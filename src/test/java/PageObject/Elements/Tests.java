@@ -12,8 +12,7 @@ public class Tests {
     CheckBox checkBox = new CheckBox(driver);
     Navigation navigation = new Navigation(driver);
     RadioButton radioButton = new RadioButton(driver);
-
-
+    WebTables webTables = new WebTables(driver);
 
     @BeforeSuite
     public void before(){
@@ -21,14 +20,13 @@ public class Tests {
         mainPage.goToElem();
     }
 
-
     @Test
-    public void fillAndCheckTextBox(){
+    public void TextBoxTest(){
         mainPage.goToTextBox();
-        textBox.fillTextBoxes();
+        textBox.fillTextBoxes("Alex","test@test.test", "st Test apartments 113", "st TestTestTest 45");
     }
     @Test
-    public void fillAndCheckCheckBox(){
+    public void selectAndCheckCheckBox(){
         mainPage.goToCheckBox();
         checkBox.selectCheckBox();
         checkBox.unselectCheckBox();
@@ -41,6 +39,12 @@ public class Tests {
         radioButton.selectYesRadio();
         radioButton.selectImpressive();
         radioButton.universalWithHelp(Check.YES);
+    }
+    @Test
+    public void webTable(){
+        mainPage.goToWebTables();
+        webTables.add("Alex","Test", "test@test.tt", "23","14000","Test department");
+        webTables.selectAmountOfRows(20);
     }
 
 

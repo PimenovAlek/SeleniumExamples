@@ -12,11 +12,11 @@ public class CheckBox {
         this.driver = driver;
     }
 
-    By checkBoxUncheck = By.cssSelector("svg.rct-icon.rct-icon-uncheck");
-    By plusBtn = By.cssSelector("svg.rct-icon.rct-icon-expand-all");
-    By minusBtn = By.cssSelector("svg.rct-icon.rct-icon-collapse-all");
-    By checkBoxCheck = By.cssSelector("svg.rct-icon.rct-icon-check");
-    By selected = By.cssSelector("span.text-success");
+    private By checkBoxUncheck = By.cssSelector("svg.rct-icon.rct-icon-uncheck");
+    private By plusBtn = By.cssSelector("svg.rct-icon.rct-icon-expand-all");
+    private By minusBtn = By.cssSelector("svg.rct-icon.rct-icon-collapse-all");
+    private By checkBoxCheck = By.cssSelector("svg.rct-icon.rct-icon-check");
+    private By selected = By.cssSelector("span.text-success");
 
     public void selectCheckBox(){
         driver.findElement(checkBoxUncheck).click();

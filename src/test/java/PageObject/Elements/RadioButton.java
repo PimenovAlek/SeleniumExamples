@@ -10,10 +10,10 @@ public class RadioButton {
     public RadioButton(WebDriver driver){
         this.driver = driver;
     }
-    By pageHeader = By.cssSelector("div.main-header");
-    By yesRadio = By.cssSelector("label[for='yesRadio']");
-    By impressiveRadio = By.cssSelector("label[for='impressiveRadio']");
-    By checkResult = By.cssSelector("span.text-success");
+    private By pageHeader = By.cssSelector("div.main-header");
+    private By yesRadio = By.cssSelector("label[for='yesRadio']");
+    private By impressiveRadio = By.cssSelector("label[for='impressiveRadio']");
+    private By checkResult = By.cssSelector("span.text-success");
 
     public void checkHeader(){
         String header = driver.findElement(pageHeader).getText();
