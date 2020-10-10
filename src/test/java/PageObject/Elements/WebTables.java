@@ -6,13 +6,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.List;
 
 public class WebTables {
     WebDriver driver;
-
     public WebTables(WebDriver driver){
         this.driver = driver;
     }
@@ -26,6 +23,16 @@ public class WebTables {
     private By submit = By.id("submit");
     private By tableRows = By.cssSelector("div.rt-tr");
     private By rowsAmount = By.tagName("select");
+    private By editButton = By.cssSelector("span.mr-2 svg");
+    private By deleteButton = By.cssSelector("span[title='Delete'] svg");
+    private By columnName = By.cssSelector("div.rt-td:nth-child(1)");
+    private By columnLastName = By.cssSelector("div.rt-td:nth-child(2)");
+    private By columnAge = By.cssSelector("div.rt-td:nth-child(3)");
+    private By columnEmail = By.cssSelector("div.rt-td:nth-child(4)");
+    private By columnSalary = By.cssSelector("div.rt-td:nth-child(5)");
+    private By columnDepartment = By.cssSelector("div.rt-td:nth-child(6)");
+    private By columnAction = By.cssSelector("div.rt-td:nth-child(7)");
+    private By searchField = By.id("searchBox");
 
     public void openForm(){
         driver.findElement(addNewRecord).click();
@@ -69,21 +76,43 @@ public class WebTables {
         setDepartment(department);
         submitForm();
     }
-    public List<WebElement> getRows(){
+
+    public List<WebElement> getTableRows(){
         List<WebElement> rows = driver.findElements(tableRows);
         return rows;
     }
-    public void isRecordCreated(){
-        List<WebElement> names  = new ArrayList<WebElement>();
-        for(WebElement row : getRows()){
 
+    public void openCreatedRecordForEdit(String name){
+        List<WebElement> rows = getTableRows();
+        for(int i = 1; i<rows.size();i++){
+            if(rows.get(i).findElement(columnName).getText().equals(name)){
+                rows.get(i).findElement(editButton).click();
+            }
         }
+        Assert.assertEquals(driver.findElement(firstName).getAttribute("value"), name);
+        Assert.assertEquals(driver.findElement(userEmail).getAttribute("value"), "test@test.tt");
+        submitForm();
+
+    }
+
+    public void deleteRecord(String name){
+        List<WebElement> rows = getTableRows();
+        for(int i = 1; i<rows.size();i++){
+            if(rows.get(i).findElement(columnName).getText().equals(name)){
+                rows.get(i).findElement(deleteButton).click();
+            }
+        }
+
     }
 
     public void selectAmountOfRows(int amount){
         Select rows = new Select(driver.findElement(rowsAmount));
         rows.selectByValue(String.valueOf(amount));
-        Assert.assertEquals(amount,getRows().size() - 1);
+        Assert.assertEquals(amount,getTableRows().size() - 1);
+    }
+
+    public void search(String search){
+        driver.findElement(searchField).sendKeys(search);
     }
 
 

@@ -13,6 +13,7 @@ public class Tests {
     Navigation navigation = new Navigation(driver);
     RadioButton radioButton = new RadioButton(driver);
     WebTables webTables = new WebTables(driver);
+    Buttons buttons = new Buttons(driver);
 
     @BeforeSuite
     public void before(){
@@ -44,8 +45,17 @@ public class Tests {
     public void webTable(){
         mainPage.goToWebTables();
         webTables.add("Alex","Test", "test@test.tt", "23","14000","Test department");
-        webTables.selectAmountOfRows(20);
+        webTables.openCreatedRecordForEdit("Alex");
+        webTables.deleteRecord("Alex");
+        webTables.search("Cierra");
     }
 
+    @Test
+    public void buttonsTest(){
+        mainPage.goToButtons();
+        buttons.doubleClick();
+        buttons.rightClick();
+        buttons.clickMe();
+    }
 
 }
