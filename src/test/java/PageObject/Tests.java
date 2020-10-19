@@ -1,12 +1,16 @@
-package PageObject.Elements;
+package PageObject;
 
+import PageObject.Elements.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
 public class Tests {
     WebDriver driver = new ChromeDriver();
+    WebDriverWait wait =new WebDriverWait(driver, 5);
     MainPage mainPage = new MainPage(driver);
     TextBox textBox = new TextBox(driver);
     CheckBox checkBox = new CheckBox(driver);
@@ -14,6 +18,8 @@ public class Tests {
     RadioButton radioButton = new RadioButton(driver);
     WebTables webTables = new WebTables(driver);
     Buttons buttons = new Buttons(driver);
+    Links links = new Links(driver, wait);
+    UploadAndDownload uploadAndDownload = new UploadAndDownload(driver);
 
     @BeforeSuite
     public void before(){
@@ -56,6 +62,26 @@ public class Tests {
         buttons.doubleClick();
         buttons.rightClick();
         buttons.clickMe();
+    }
+
+    @Test
+    public void links(){
+        mainPage.goToLinks();
+        links.clickOnSimple();
+        links.clickOnDynamic();
+    }
+
+    @Test
+    public void uploadDownload(){
+        mainPage.goToUploadAndDownload();
+        uploadAndDownload.uploadFile();
+        uploadAndDownload.downloadFile();
+
+    }
+
+    @AfterSuite
+    public void quite(){
+//        navigation.quite();
     }
 
 }

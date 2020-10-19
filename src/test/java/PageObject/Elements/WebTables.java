@@ -115,9 +115,4 @@ public class WebTables {
         driver.findElement(searchField).sendKeys(search);
     }
 
-
-
-
-
-
 }

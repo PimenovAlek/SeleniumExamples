@@ -30,6 +30,10 @@ public class Navigation {
         driver.findElement(By.cssSelector("div.element-list.collapse.show li#item-1")).click();
     }
 
+    public void quite(){
+        driver.quit();
+    }
+
 
 
 }
