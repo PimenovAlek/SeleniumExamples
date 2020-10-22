@@ -7,6 +7,7 @@ public class MainPage{
     WebDriver driver;
 
     By element = By.cssSelector("div.card.mt-4.top-card:nth-child(1)");
+    By form = By.cssSelector("div.card.mt-4.top-card:nth-child(2)");
     By textBox = By.cssSelector("div.element-list.collapse.show li#item-0");
     By checkBox = By.cssSelector("div.element-list.collapse.show li#item-1");
     By radioButton = By.cssSelector("div.element-list.collapse.show li#item-2");
@@ -16,6 +17,8 @@ public class MainPage{
     By brokenLinks = By.cssSelector("div.element-list.collapse.show li#item-6");
     By uploadAndDownload = By.cssSelector("div.element-list.collapse.show li#item-7");
     By dynamicProperties = By.cssSelector("div.element-list.collapse.show li#item-8");
+    By formItem = By.cssSelector("div.element-list.collapse.show li#item-0");
+
 
     public MainPage(WebDriver driver){
         this.driver = driver;
@@ -62,5 +65,8 @@ public class MainPage{
         driver.findElement(dynamicProperties).click();
         return this;
     }
-
+    public void goToForms() {
+        driver.findElement(form).click();
+        driver.findElement(formItem).click();
+    }
 }

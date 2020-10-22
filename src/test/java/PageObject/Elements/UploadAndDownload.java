@@ -17,8 +17,8 @@ public class UploadAndDownload {
         driver.findElement(uploadedFilePath).getText().equals("C:\\fakepath\\Test.txt");
     }
     public void downloadFile(){
-        driver.findElement(downloadButton).sendKeys("D:\\");
         driver.findElement(downloadButton).click();
+        driver.findElement(downloadButton).sendKeys("D:\\");
     }
 
 }

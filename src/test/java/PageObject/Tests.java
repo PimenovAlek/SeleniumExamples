@@ -1,6 +1,7 @@
 package PageObject;
 
 import PageObject.Elements.*;
+import PageObject.Forms.Form;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -19,16 +20,18 @@ public class Tests {
     WebTables webTables = new WebTables(driver);
     Buttons buttons = new Buttons(driver);
     Links links = new Links(driver, wait);
+    Form form = new Form(driver);
     UploadAndDownload uploadAndDownload = new UploadAndDownload(driver);
 
     @BeforeSuite
     public void before(){
         navigation.init();
-        mainPage.goToElem();
+
     }
 
     @Test
     public void TextBoxTest(){
+        mainPage.goToElem();
         mainPage.goToTextBox();
         textBox.fillTextBoxes("Alex","test@test.test", "st Test apartments 113", "st TestTestTest 45");
     }
@@ -78,6 +81,18 @@ public class Tests {
         uploadAndDownload.downloadFile();
 
     }
+    @Test
+    public void fillForm(){
+        mainPage.goToForms();
+        form.addName("Aaaaaaaaaa");
+        form.addLastName("Bbbbbbbbbbbb");
+        form.selectMale();
+        form.addUserNumber("9876543210");
+        form.selectReading();
+        form.subButton();
+
+    }
+
 
     @AfterSuite
     public void quite(){
