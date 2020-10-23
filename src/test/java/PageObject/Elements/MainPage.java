@@ -8,6 +8,7 @@ public class MainPage{
 
     By element = By.cssSelector("div.card.mt-4.top-card:nth-child(1)");
     By form = By.cssSelector("div.card.mt-4.top-card:nth-child(2)");
+    By alertsFrameAndWindows = By.cssSelector("div.card.mt-4.top-card:nth-child(2)");
     By textBox = By.cssSelector("div.element-list.collapse.show li#item-0");
     By checkBox = By.cssSelector("div.element-list.collapse.show li#item-1");
     By radioButton = By.cssSelector("div.element-list.collapse.show li#item-2");
@@ -18,7 +19,11 @@ public class MainPage{
     By uploadAndDownload = By.cssSelector("div.element-list.collapse.show li#item-7");
     By dynamicProperties = By.cssSelector("div.element-list.collapse.show li#item-8");
     By formItem = By.cssSelector("div.element-list.collapse.show li#item-0");
-
+    By browserWindows = By.cssSelector("div.element-list.collapse.show li#item-0");
+    By alerts = By.cssSelector("div.element-list.collapse.show li#item-1");
+    By frames = By.cssSelector("div.element-list.collapse.show li#item-2");
+    By nestedFrames = By.cssSelector("div.element-list.collapse.show li#item-3");
+    By modalDialogs = By.cssSelector("div.element-list.collapse.show li#item-4");
 
     public MainPage(WebDriver driver){
         this.driver = driver;
@@ -69,4 +74,23 @@ public class MainPage{
         driver.findElement(form).click();
         driver.findElement(formItem).click();
     }
+    public void goToAlertsFramesAndWindows(){
+        driver.findElement(alertsFrameAndWindows).click();
+    }
+    public void goToBrowserWindows(){
+        driver.findElement(browserWindows).click();
+    }
+    public void goToAlerts(){
+        driver.findElement(alerts).click();
+    }
+    public void goToFrames(){
+        driver.findElement(frames).click();
+    }
+    public void goToNestedFrames(){
+        driver.findElement(nestedFrames).click();
+    }
+    public void goToModalDialogs(){
+        driver.findElement(modalDialogs).click();
+    }
+
 }

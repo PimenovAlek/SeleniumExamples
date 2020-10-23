@@ -20,7 +20,7 @@ public class Tests {
     WebTables webTables = new WebTables(driver);
     Buttons buttons = new Buttons(driver);
     Links links = new Links(driver, wait);
-    Form form = new Form(driver);
+    Form form = new Form(driver, wait);
     UploadAndDownload uploadAndDownload = new UploadAndDownload(driver);
 
     @BeforeSuite
@@ -90,6 +90,7 @@ public class Tests {
         form.addUserNumber("9876543210");
         form.selectReading();
         form.subButton();
+        form.checkModalResults("Mobile", "9876543210");
 
     }
 

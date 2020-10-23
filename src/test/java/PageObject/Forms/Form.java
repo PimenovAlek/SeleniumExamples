@@ -4,12 +4,20 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Form {
     WebDriver driver;
+    WebDriverWait wait;
 
-    public Form(WebDriver driver){
+    public Form(WebDriver driver, WebDriverWait wait){
         this.driver = driver;
+        this.wait = wait;
     }
 
     //Page fields
@@ -34,6 +42,9 @@ public class Form {
     //Modal fields
     private By modal = By.cssSelector("div.modal-content");
     private By closeBtn = By.id("closeLargeModal");
+    private By modalTableRows = By.cssSelector("tbody tr");
+    private By rowName = By.cssSelector(":nth-child(1)");
+    private By rowResult = By.cssSelector(":nth-child(2)");
 
     //Form methods
     public void fillFrom(){
@@ -121,14 +132,30 @@ public class Form {
         } else {
             return false;
         }
-
     }
 
     public void closeModal() {
         if (isVisible()) {
             driver.findElement(closeBtn).click();
         }
-
     }
+
+    public Map<String, String> getResults(){
+        wait.until(ExpectedConditions.visibilityOfElementLocated(modal));
+        Map<String, String> results = new HashMap<String, String>();
+        List<WebElement> rows = driver.findElements(modalTableRows);
+        for (WebElement row: rows){
+            results.put(row.findElement(rowName).getText(), row.findElement(rowResult).getText());
+            System.out.println(results.get(row.findElement(rowName).getText()));
+        }
+        return results;
+    }
+
+    public void checkModalResults(String actual, String expected){
+        getResults().get(actual).equals(expected);
+    }
+
+
+
 
 }
