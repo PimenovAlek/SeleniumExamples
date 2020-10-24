@@ -1,5 +1,6 @@
 package PageObject;
 
+import PageObject.AlertsFramesAndWindows.*;
 import PageObject.Elements.*;
 import PageObject.Forms.Form;
 import org.openqa.selenium.WebDriver;
@@ -22,6 +23,11 @@ public class Tests {
     Links links = new Links(driver, wait);
     Form form = new Form(driver, wait);
     UploadAndDownload uploadAndDownload = new UploadAndDownload(driver);
+    Alerts alerts = new Alerts(driver, wait);
+    BrowserWindows browserWindows = new BrowserWindows(driver, wait);
+    Frames frames = new Frames(driver);
+    NestedFrames nestedFrames = new NestedFrames(driver);
+    ModalDialogs modalDialogs = new ModalDialogs(driver, wait);
 
     @BeforeSuite
     public void before(){
@@ -91,9 +97,43 @@ public class Tests {
         form.selectReading();
         form.subButton();
         form.checkModalResults("Mobile", "9876543210");
-
     }
-
+    @Test
+    public void browserWindowsPageTest(){
+        mainPage.goToAlertsFramesAndWindows();
+        mainPage.goToBrowserWindows();
+        browserWindows.openMessageWindowButton();
+    }
+    @Test
+    public void alerts(){
+        mainPage.goToAlertsFramesAndWindows();
+        mainPage.goToAlerts();
+        alerts.openAndClose();
+        alerts.openAlertWithTimer();
+        alerts.acceptPrompt();
+        alerts.cancelPrompt();
+        alerts.enterTextIn("Alalalalalala");
+    }
+    @Test
+    public void frameTest(){
+        mainPage.goToAlertsFramesAndWindows();
+        mainPage.goToFrames();
+        frames.getTextFromSecondFrame();
+        frames.getTextFromFrame();
+    }
+    @Test
+    public void nestedFramesTest(){
+        mainPage.goToAlertsFramesAndWindows();
+        mainPage.goToNestedFrames();
+        nestedFrames.takeText();
+    }
+    @Test
+    public void modalDialogs(){
+        mainPage.goToAlertsFramesAndWindows();
+        mainPage.goToModalDialogs();
+        modalDialogs.openSmallModal();
+        modalDialogs.openLargeModal();
+    }
 
     @AfterSuite
     public void quite(){

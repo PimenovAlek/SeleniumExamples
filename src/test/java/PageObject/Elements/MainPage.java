@@ -8,7 +8,7 @@ public class MainPage{
 
     By element = By.cssSelector("div.card.mt-4.top-card:nth-child(1)");
     By form = By.cssSelector("div.card.mt-4.top-card:nth-child(2)");
-    By alertsFrameAndWindows = By.cssSelector("div.card.mt-4.top-card:nth-child(2)");
+    By alertsFrameAndWindows = By.cssSelector("div.card.mt-4.top-card:nth-child(3)");
     By textBox = By.cssSelector("div.element-list.collapse.show li#item-0");
     By checkBox = By.cssSelector("div.element-list.collapse.show li#item-1");
     By radioButton = By.cssSelector("div.element-list.collapse.show li#item-2");
