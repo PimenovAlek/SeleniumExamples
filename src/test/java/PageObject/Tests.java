@@ -3,6 +3,10 @@ package PageObject;
 import PageObject.AlertsFramesAndWindows.*;
 import PageObject.Elements.*;
 import PageObject.Forms.Form;
+import PageObject.Widgets.Accordian;
+import PageObject.Widgets.AutoComplete;
+import PageObject.Widgets.DatePicker;
+import PageObject.Widgets.ProgressBar;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -12,7 +16,7 @@ import org.testng.annotations.Test;
 
 public class Tests {
     WebDriver driver = new ChromeDriver();
-    WebDriverWait wait =new WebDriverWait(driver, 5);
+    WebDriverWait wait =new WebDriverWait(driver, 10);
     MainPage mainPage = new MainPage(driver);
     TextBox textBox = new TextBox(driver);
     CheckBox checkBox = new CheckBox(driver);
@@ -28,6 +32,10 @@ public class Tests {
     Frames frames = new Frames(driver);
     NestedFrames nestedFrames = new NestedFrames(driver);
     ModalDialogs modalDialogs = new ModalDialogs(driver, wait);
+    Accordian accordian = new Accordian(driver);
+    AutoComplete autoComplete = new AutoComplete(driver);
+    DatePicker datePicker = new DatePicker(driver);
+    ProgressBar progressBar = new ProgressBar(driver, wait);
 
     @BeforeSuite
     public void before(){
@@ -133,6 +141,37 @@ public class Tests {
         mainPage.goToModalDialogs();
         modalDialogs.openSmallModal();
         modalDialogs.openLargeModal();
+    }
+    @Test
+    public void accordianTest(){
+        mainPage.goToWidgets();
+        mainPage.goToAccordian();
+        accordian.selectFirst();
+        accordian.selectSecond();
+        accordian.selectThird();
+    }
+    @Test
+    public void autoCompleteTest(){
+        mainPage.goToWidgets();
+        mainPage.goToAutoComplete();
+        autoComplete.multiple("Red");
+        autoComplete.multiple("Yell");
+        autoComplete.multiple("Black");
+        autoComplete.deleteColors();
+    }
+
+    @Test
+    public void datePickTest(){
+        mainPage.goToWidgets();
+        mainPage.goToDatePicker();
+        datePicker.pickTheDate(6, "1998", 0, 5);
+    }
+    @Test
+    public void progressBar(){
+        mainPage.goToWidgets();
+        mainPage.goToProgressBar();
+        progressBar.check(30);
+
     }
 
     @AfterSuite

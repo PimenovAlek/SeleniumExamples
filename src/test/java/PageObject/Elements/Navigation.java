@@ -20,15 +20,6 @@ public class Navigation {
 
     }
 
-    public void tapOnTexBox(){
-        driver.findElement(By.cssSelector("div.card.mt-4.top-card:nth-child(1)")).click();
-        driver.findElement(By.cssSelector("div.element-list.collapse.show li#item-0")).click();
-    }
-
-    public void tapOnCheckBox(){
-        driver.findElement(By.cssSelector("div.card.mt-4.top-card:nth-child(1)")).click();
-        driver.findElement(By.cssSelector("div.element-list.collapse.show li#item-1")).click();
-    }
 
     public void quite(){
         driver.quit();

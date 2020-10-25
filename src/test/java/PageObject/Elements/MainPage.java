@@ -1,6 +1,7 @@
 package PageObject.Elements;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 
 public class MainPage{
@@ -9,6 +10,7 @@ public class MainPage{
     By element = By.cssSelector("div.card.mt-4.top-card:nth-child(1)");
     By form = By.cssSelector("div.card.mt-4.top-card:nth-child(2)");
     By alertsFrameAndWindows = By.cssSelector("div.card.mt-4.top-card:nth-child(3)");
+    By widgets = By.cssSelector("div.card.mt-4.top-card:nth-child(4)");
     By textBox = By.cssSelector("div.element-list.collapse.show li#item-0");
     By checkBox = By.cssSelector("div.element-list.collapse.show li#item-1");
     By radioButton = By.cssSelector("div.element-list.collapse.show li#item-2");
@@ -24,6 +26,15 @@ public class MainPage{
     By frames = By.cssSelector("div.element-list.collapse.show li#item-2");
     By nestedFrames = By.cssSelector("div.element-list.collapse.show li#item-3");
     By modalDialogs = By.cssSelector("div.element-list.collapse.show li#item-4");
+    By accordian = By.cssSelector("div.element-list.collapse.show li#item-0");
+    By autocomplete = By.cssSelector("div.element-list.collapse.show li#item-1");
+    By datePicker = By.cssSelector("div.element-list.collapse.show li#item-2");
+    By slider = By.cssSelector("div.element-list.collapse.show li#item-3");
+    By progressBar = By.cssSelector("div.element-list.collapse.show li#item-4");
+    By tabs = By.cssSelector("div.element-list.collapse.show li#item-5");
+    By toolTips = By.cssSelector("div.element-list.collapse.show li#item-6");
+    By menu = By.cssSelector("div.element-list.collapse.show li#item-1");
+
 
     public MainPage(WebDriver driver){
         this.driver = driver;
@@ -91,6 +102,32 @@ public class MainPage{
     }
     public void goToModalDialogs(){
         driver.findElement(modalDialogs).click();
+    }
+    public void goToWidgets(){driver.findElement(widgets).click();}
+    public void goToAccordian(){driver.findElement(accordian).click();}
+    public void goToAutoComplete(){
+        driver.findElement(autocomplete).click();
+    }
+    public void goToDatePicker(){
+        driver.findElement(datePicker).click();
+    }
+    public void goToSlider(){
+        driver.findElement(slider).click();
+    }
+    public void goToProgressBar(){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0,200)");
+        driver.findElement(progressBar).click();
+
+    }
+    public void goToTabs(){
+        driver.findElement(tabs).click();
+    }
+    public void goToToolTips(){
+        driver.findElement(toolTips).click();
+    }
+    public void goToMenu(){
+        driver.findElement(menu).click();
     }
 
 }
