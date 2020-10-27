@@ -7,33 +7,33 @@ import org.openqa.selenium.WebDriver;
 public class MainPage{
     WebDriver driver;
 
-    By element = By.cssSelector("div.card.mt-4.top-card:nth-child(1)");
-    By form = By.cssSelector("div.card.mt-4.top-card:nth-child(2)");
-    By alertsFrameAndWindows = By.cssSelector("div.card.mt-4.top-card:nth-child(3)");
-    By widgets = By.cssSelector("div.card.mt-4.top-card:nth-child(4)");
-    By textBox = By.cssSelector("div.element-list.collapse.show li#item-0");
-    By checkBox = By.cssSelector("div.element-list.collapse.show li#item-1");
-    By radioButton = By.cssSelector("div.element-list.collapse.show li#item-2");
-    By webTables = By.cssSelector("div.element-list.collapse.show li#item-3");
-    By buttons = By.cssSelector("div.element-list.collapse.show li#item-4");
-    By links = By.cssSelector("div.element-list.collapse.show li#item-5");
-    By brokenLinks = By.cssSelector("div.element-list.collapse.show li#item-6");
-    By uploadAndDownload = By.cssSelector("div.element-list.collapse.show li#item-7");
-    By dynamicProperties = By.cssSelector("div.element-list.collapse.show li#item-8");
-    By formItem = By.cssSelector("div.element-list.collapse.show li#item-0");
-    By browserWindows = By.cssSelector("div.element-list.collapse.show li#item-0");
-    By alerts = By.cssSelector("div.element-list.collapse.show li#item-1");
-    By frames = By.cssSelector("div.element-list.collapse.show li#item-2");
-    By nestedFrames = By.cssSelector("div.element-list.collapse.show li#item-3");
-    By modalDialogs = By.cssSelector("div.element-list.collapse.show li#item-4");
-    By accordian = By.cssSelector("div.element-list.collapse.show li#item-0");
-    By autocomplete = By.cssSelector("div.element-list.collapse.show li#item-1");
-    By datePicker = By.cssSelector("div.element-list.collapse.show li#item-2");
-    By slider = By.cssSelector("div.element-list.collapse.show li#item-3");
-    By progressBar = By.cssSelector("div.element-list.collapse.show li#item-4");
-    By tabs = By.cssSelector("div.element-list.collapse.show li#item-5");
-    By toolTips = By.cssSelector("div.element-list.collapse.show li#item-6");
-    By menu = By.cssSelector("div.element-list.collapse.show li#item-1");
+    private By element = By.cssSelector("div.card.mt-4.top-card:nth-child(1)");
+    private By form = By.cssSelector("div.card.mt-4.top-card:nth-child(2)");
+    private By alertsFrameAndWindows = By.cssSelector("div.card.mt-4.top-card:nth-child(3)");
+    private By widgets = By.cssSelector("div.card.mt-4.top-card:nth-child(4)");
+    private By textBox = By.cssSelector("div.element-list.collapse.show li#item-0");
+    private By checkBox = By.cssSelector("div.element-list.collapse.show li#item-1");
+    private By radioButton = By.cssSelector("div.element-list.collapse.show li#item-2");
+    private By webTables = By.cssSelector("div.element-list.collapse.show li#item-3");
+    private By buttons = By.cssSelector("div.element-list.collapse.show li#item-4");
+    private By links = By.cssSelector("div.element-list.collapse.show li#item-5");
+    private By brokenLinks = By.cssSelector("div.element-list.collapse.show li#item-6");
+    private By uploadAndDownload = By.cssSelector("div.element-list.collapse.show li#item-7");
+    private By dynamicProperties = By.cssSelector("div.element-list.collapse.show li#item-8");
+    private By formItem = By.cssSelector("div.element-list.collapse.show li#item-0");
+    private By browserWindows = By.cssSelector("div.element-list.collapse.show li#item-0");
+    private By alerts = By.cssSelector("div.element-list.collapse.show li#item-1");
+    private By frames = By.cssSelector("div.element-list.collapse.show li#item-2");
+    private By nestedFrames = By.cssSelector("div.element-list.collapse.show li#item-3");
+    private By modalDialogs = By.cssSelector("div.element-list.collapse.show li#item-4");
+    private By accordian = By.cssSelector("div.element-list.collapse.show li#item-0");
+    private By autocomplete = By.cssSelector("div.element-list.collapse.show li#item-1");
+    private By datePicker = By.cssSelector("div.element-list.collapse.show li#item-2");
+    private By slider = By.cssSelector("div.element-list.collapse.show li#item-3");
+    private By progressBar = By.cssSelector("div.element-list.collapse.show li#item-4");
+    private By tabs = By.cssSelector("div.element-list.collapse.show li#item-5");
+    private By toolTips = By.cssSelector("div.element-list.collapse.show li#item-6");
+    private By menu = By.cssSelector("div.element-list.collapse.show li#item-1");
 
 
     public MainPage(WebDriver driver){
@@ -121,9 +121,13 @@ public class MainPage{
 
     }
     public void goToTabs(){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0,400)");
         driver.findElement(tabs).click();
     }
     public void goToToolTips(){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0,400)");
         driver.findElement(toolTips).click();
     }
     public void goToMenu(){

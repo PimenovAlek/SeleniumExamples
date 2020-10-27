@@ -3,16 +3,16 @@ package PageObject;
 import PageObject.AlertsFramesAndWindows.*;
 import PageObject.Elements.*;
 import PageObject.Forms.Form;
-import PageObject.Widgets.Accordian;
-import PageObject.Widgets.AutoComplete;
-import PageObject.Widgets.DatePicker;
-import PageObject.Widgets.ProgressBar;
+import PageObject.Widgets.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
+
+import static PageObject.Widgets.TabsCheckData.*;
 
 public class Tests {
     WebDriver driver = new ChromeDriver();
@@ -36,11 +36,12 @@ public class Tests {
     AutoComplete autoComplete = new AutoComplete(driver);
     DatePicker datePicker = new DatePicker(driver);
     ProgressBar progressBar = new ProgressBar(driver, wait);
+    ToolTips toolTips = new ToolTips(driver, wait);
+    Tabs tabs = new Tabs(driver);
 
     @BeforeSuite
     public void before(){
         navigation.init();
-
     }
 
     @Test
@@ -171,6 +172,29 @@ public class Tests {
         mainPage.goToWidgets();
         mainPage.goToProgressBar();
         progressBar.check(30);
+    }
+
+    @Test
+    public void hoverTest() throws InterruptedException {
+        mainPage.goToWidgets();
+        mainPage.goToToolTips();
+        Assert.assertEquals(toolTips.hoverOnButton(), "You hovered over the Button");
+
+        Assert.assertEquals(toolTips.hoverOnTextField(), "You hovered over the text field");
+
+        Assert.assertEquals(toolTips.hoverOnFirstLink(), "You hovered over the Contrary");
+
+        Assert.assertEquals(toolTips.hoverOnSecondLink(), "You hovered over the 1.10.32");
+    }
+
+    @Test
+    public void tabsTest(){
+        mainPage.goToWidgets();
+        mainPage.goToTabs();
+        Assert.assertEquals(tabs.selectWhatTabAndGetText(), whatContent);
+        Assert.assertEquals(tabs.selectOriginTabAndGetText().trim(), originContent);
+        Assert.assertEquals(tabs.selectUseTabAndGetText(), useContent);
+        Assert.assertTrue(tabs.selectMoreTabAndGetText());
 
     }
 

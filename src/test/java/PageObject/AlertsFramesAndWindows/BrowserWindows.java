@@ -29,7 +29,6 @@ public class BrowserWindows {
         wait.until(numberOfWindowsToBe(2));
         for(String windowHandle : driver.getWindowHandles()){
             if(!originalWindow.contentEquals(windowHandle)){
-
                 driver.switchTo().window(windowHandle);
                 wait.until(ExpectedConditions.visibilityOfElementLocated(anotherWindowText)).getText().equals("This is a sample page");
                 break;
