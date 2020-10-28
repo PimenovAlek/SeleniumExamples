@@ -1,6 +1,7 @@
 package PageObject;
 
 import PageObject.AlertsFramesAndWindows.*;
+import PageObject.AppManager.Navigation;
 import PageObject.Elements.*;
 import PageObject.Forms.Form;
 import PageObject.Widgets.*;
@@ -26,7 +27,7 @@ public class Tests {
     Buttons buttons = new Buttons(driver);
     Links links = new Links(driver, wait);
     Form form = new Form(driver, wait);
-    UploadAndDownload uploadAndDownload = new UploadAndDownload(driver);
+    UploadAndDownload uploadAndDownload = new UploadAndDownload(driver,wait);
     Alerts alerts = new Alerts(driver, wait);
     BrowserWindows browserWindows = new BrowserWindows(driver, wait);
     Frames frames = new Frames(driver);
@@ -37,6 +38,7 @@ public class Tests {
     DatePicker datePicker = new DatePicker(driver);
     ProgressBar progressBar = new ProgressBar(driver, wait);
     ToolTips toolTips = new ToolTips(driver, wait);
+    HomePage homePage = new HomePage(driver);
     Tabs tabs = new Tabs(driver);
 
     @BeforeSuite
@@ -46,12 +48,14 @@ public class Tests {
 
     @Test
     public void TextBoxTest(){
-        mainPage.goToElem();
+        homePage.goToWidgets();
+        homePage.goToElem();
         mainPage.goToTextBox();
-        textBox.fillTextBoxes("Alex","test@test.test", "st Test apartments 113", "st TestTestTest 45");
+        textBox.fillTextBoxes("Alex","test@test.te", "st Test apartments 113", "st TestTestTest 45");
     }
     @Test
     public void selectAndCheckCheckBox(){
+        homePage.goToElem();
         mainPage.goToCheckBox();
         checkBox.selectCheckBox();
         checkBox.unselectCheckBox();
@@ -59,6 +63,7 @@ public class Tests {
     }
     @Test
     public void radioTest(){
+        homePage.goToElem();
         mainPage.goToRadioButton();
         radioButton.checkHeader();
         radioButton.selectYesRadio();
@@ -76,6 +81,7 @@ public class Tests {
 
     @Test
     public void buttonsTest(){
+        homePage.goToElem();
         mainPage.goToButtons();
         buttons.doubleClick();
         buttons.rightClick();
@@ -84,38 +90,43 @@ public class Tests {
 
     @Test
     public void links(){
+        homePage.goToElem();
         mainPage.goToLinks();
         links.clickOnSimple();
         links.clickOnDynamic();
     }
 
     @Test
-    public void uploadDownload(){
+    public void uploadDownload() throws InterruptedException {
+        homePage.goToElem();
         mainPage.goToUploadAndDownload();
         uploadAndDownload.uploadFile();
-        uploadAndDownload.downloadFile();
+//        uploadAndDownload.downloadFile();
 
     }
     @Test
     public void fillForm(){
-        mainPage.goToForms();
+        homePage.goToForms();
+        mainPage.gotoForm();
         form.addName("Aaaaaaaaaa");
         form.addLastName("Bbbbbbbbbbbb");
         form.selectMale();
         form.addUserNumber("9876543210");
         form.selectReading();
+        form.scrollPage(300);
         form.subButton();
         form.checkModalResults("Mobile", "9876543210");
+        form.closeModal();
     }
     @Test
     public void browserWindowsPageTest(){
-        mainPage.goToAlertsFramesAndWindows();
+        homePage.goToAlertsFramesAndWindows();
         mainPage.goToBrowserWindows();
         browserWindows.openMessageWindowButton();
     }
     @Test
     public void alerts(){
-        mainPage.goToAlertsFramesAndWindows();
+        homePage.goToAlertsFramesAndWindows();
         mainPage.goToAlerts();
         alerts.openAndClose();
         alerts.openAlertWithTimer();
@@ -125,27 +136,27 @@ public class Tests {
     }
     @Test
     public void frameTest(){
-        mainPage.goToAlertsFramesAndWindows();
+        homePage.goToAlertsFramesAndWindows();
         mainPage.goToFrames();
         frames.getTextFromSecondFrame();
         frames.getTextFromFrame();
     }
     @Test
     public void nestedFramesTest(){
-        mainPage.goToAlertsFramesAndWindows();
+        homePage.goToAlertsFramesAndWindows();
         mainPage.goToNestedFrames();
         nestedFrames.takeText();
     }
     @Test
     public void modalDialogs(){
-        mainPage.goToAlertsFramesAndWindows();
+        homePage.goToAlertsFramesAndWindows();
         mainPage.goToModalDialogs();
         modalDialogs.openSmallModal();
         modalDialogs.openLargeModal();
     }
     @Test
     public void accordianTest(){
-        mainPage.goToWidgets();
+        homePage.goToWidgets();
         mainPage.goToAccordian();
         accordian.selectFirst();
         accordian.selectSecond();
@@ -153,7 +164,9 @@ public class Tests {
     }
     @Test
     public void autoCompleteTest(){
-        mainPage.goToWidgets();
+        homePage.goToForms();
+        mainPage.gotoForm();
+        homePage.goToWidgets();
         mainPage.goToAutoComplete();
         autoComplete.multiple("Red");
         autoComplete.multiple("Yell");
@@ -163,20 +176,20 @@ public class Tests {
 
     @Test
     public void datePickTest(){
-        mainPage.goToWidgets();
+        homePage.goToWidgets();
         mainPage.goToDatePicker();
         datePicker.pickTheDate(6, "1998", 0, 5);
     }
     @Test
     public void progressBar(){
-        mainPage.goToWidgets();
+        homePage.goToWidgets();
         mainPage.goToProgressBar();
         progressBar.check(30);
     }
 
     @Test
     public void hoverTest() throws InterruptedException {
-        mainPage.goToWidgets();
+        homePage.goToWidgets();
         mainPage.goToToolTips();
         Assert.assertEquals(toolTips.hoverOnButton(), "You hovered over the Button");
 
@@ -189,18 +202,16 @@ public class Tests {
 
     @Test
     public void tabsTest(){
-        mainPage.goToWidgets();
+        homePage.goToWidgets();
         mainPage.goToTabs();
         Assert.assertEquals(tabs.selectWhatTabAndGetText(), whatContent);
-        Assert.assertEquals(tabs.selectOriginTabAndGetText().trim(), originContent);
         Assert.assertEquals(tabs.selectUseTabAndGetText(), useContent);
         Assert.assertTrue(tabs.selectMoreTabAndGetText());
 
     }
 
-    @AfterSuite
-    public void quite(){
-//        navigation.quite();
-    }
+//    @AfterSuite
+//    public void quite(){ navigation.quite();
+//    }
 
 }

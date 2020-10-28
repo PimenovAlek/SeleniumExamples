@@ -6,11 +6,6 @@ import org.openqa.selenium.WebDriver;
 
 public class MainPage{
     WebDriver driver;
-
-    private By element = By.cssSelector("div.card.mt-4.top-card:nth-child(1)");
-    private By form = By.cssSelector("div.card.mt-4.top-card:nth-child(2)");
-    private By alertsFrameAndWindows = By.cssSelector("div.card.mt-4.top-card:nth-child(3)");
-    private By widgets = By.cssSelector("div.card.mt-4.top-card:nth-child(4)");
     private By textBox = By.cssSelector("div.element-list.collapse.show li#item-0");
     private By checkBox = By.cssSelector("div.element-list.collapse.show li#item-1");
     private By radioButton = By.cssSelector("div.element-list.collapse.show li#item-2");
@@ -40,10 +35,6 @@ public class MainPage{
         this.driver = driver;
     }
 
-    public MainPage goToElem(){
-        driver.findElement(element).click();
-        return this;
-    }
     public MainPage goToTextBox(){
         driver.findElement(textBox).click();
         return this;
@@ -81,12 +72,8 @@ public class MainPage{
         driver.findElement(dynamicProperties).click();
         return this;
     }
-    public void goToForms() {
-        driver.findElement(form).click();
+    public void gotoForm(){
         driver.findElement(formItem).click();
-    }
-    public void goToAlertsFramesAndWindows(){
-        driver.findElement(alertsFrameAndWindows).click();
     }
     public void goToBrowserWindows(){
         driver.findElement(browserWindows).click();
@@ -103,7 +90,6 @@ public class MainPage{
     public void goToModalDialogs(){
         driver.findElement(modalDialogs).click();
     }
-    public void goToWidgets(){driver.findElement(widgets).click();}
     public void goToAccordian(){driver.findElement(accordian).click();}
     public void goToAutoComplete(){
         driver.findElement(autocomplete).click();

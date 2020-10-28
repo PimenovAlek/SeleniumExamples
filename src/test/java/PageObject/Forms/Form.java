@@ -150,6 +150,10 @@ public class Form {
         }
         return results;
     }
+    public void scrollPage(int value){
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0,"+value+")");
+    }
 
     public void checkModalResults(String actual, String expected){
         getResults().get(actual).equals(expected);

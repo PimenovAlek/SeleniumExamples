@@ -27,7 +27,7 @@ public class Accordian {
     }
     public void selectThird(){
         driver.findElement(section3).click();
-        assert driver.findElement(content3).getText().contains("will uncover many");
+        assert driver.findElement(content3).getText().contains("'lorem ipsum'");
 
     }
 }

@@ -1,4 +1,4 @@
-package PageObject.Elements;
+package PageObject.AppManager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -17,10 +17,7 @@ public class Navigation {
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.get("https://demoqa.com");
-
     }
-
-
     public void quite(){
         driver.quit();
     }

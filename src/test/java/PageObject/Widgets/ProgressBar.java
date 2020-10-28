@@ -16,6 +16,7 @@ public class ProgressBar {
     private By button = By.id("startStopButton");
 
     public void check(int number){
+
         assert driver.findElement(button).getText().equals("Start");
         driver.findElement(button).click();
         assert driver.findElement(button).getText().equals("Stop");
