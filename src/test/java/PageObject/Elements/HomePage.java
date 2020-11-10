@@ -4,11 +4,15 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class HomePage {
     WebDriver driver;
-    public HomePage(WebDriver driver){
+    WebDriverWait wait;
+    public HomePage(WebDriver driver, WebDriverWait wait){
         this.driver = driver;
+        this.wait = wait;
     }
     private By homeButton = By.cssSelector("header a");
     private By element = By.cssSelector("div.card.mt-4.top-card:nth-child(1)");
@@ -40,7 +44,7 @@ public class HomePage {
     public void goToAlertsFramesAndWindows(){
         if(driver.getCurrentUrl().equals("https://demoqa.com")){
             driver.findElement(alertsFrameAndWindows).click();
-        }else{
+        } else{
             Actions actions = new Actions(driver);
             WebElement home = driver.findElement(homeButton);
             actions.moveToElement(home).click().build().perform();

@@ -24,6 +24,7 @@ public class NestedFrames {
         WebElement child = driver.findElement(childFrame);
         driver.switchTo().frame(child);
         driver.findElement(childText).getText().contains("Child Iframe");
+        driver.switchTo().window(window);
     }
 
 }

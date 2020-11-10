@@ -33,12 +33,12 @@ public class Tests {
     Frames frames = new Frames(driver);
     NestedFrames nestedFrames = new NestedFrames(driver);
     ModalDialogs modalDialogs = new ModalDialogs(driver, wait);
-    Accordian accordian = new Accordian(driver);
+    Accordian accordian = new Accordian(driver, wait);
     AutoComplete autoComplete = new AutoComplete(driver);
     DatePicker datePicker = new DatePicker(driver);
     ProgressBar progressBar = new ProgressBar(driver, wait);
     ToolTips toolTips = new ToolTips(driver, wait);
-    HomePage homePage = new HomePage(driver);
+    HomePage homePage = new HomePage(driver, wait);
     Tabs tabs = new Tabs(driver);
 
     @BeforeSuite
@@ -117,6 +117,7 @@ public class Tests {
         form.subButton();
         form.checkModalResults("Mobile", "9876543210");
         form.closeModal();
+        form.scrollPage(-300);
     }
     @Test
     public void browserWindowsPageTest(){
@@ -158,14 +159,13 @@ public class Tests {
     public void accordianTest(){
         homePage.goToWidgets();
         mainPage.goToAccordian();
-        accordian.selectFirst();
-        accordian.selectSecond();
-        accordian.selectThird();
+        Assert.assertTrue(accordian.selectFirst().contains("has survived not"));
+        System.out.println(accordian.selectSecond());
+        Assert.assertTrue(accordian.selectSecond().contains("classical literature"));
+        Assert.assertTrue(accordian.selectThird().contains("English"));
     }
     @Test
     public void autoCompleteTest(){
-        homePage.goToForms();
-        mainPage.gotoForm();
         homePage.goToWidgets();
         mainPage.goToAutoComplete();
         autoComplete.multiple("Red");
@@ -184,7 +184,10 @@ public class Tests {
     public void progressBar(){
         homePage.goToWidgets();
         mainPage.goToProgressBar();
-        progressBar.check(30);
+        progressBar.clickButton();
+        assert progressBar.checkButtonName().equals("Stop");
+        progressBar.stopProgressBar(44);
+        assert progressBar.checkButtonName().equals("Start");
     }
 
     @Test
@@ -210,8 +213,8 @@ public class Tests {
 
     }
 
-//    @AfterSuite
-//    public void quite(){ navigation.quite();
-//    }
+    @AfterSuite
+    public void quite(){ navigation.quite();
+    }
 
 }

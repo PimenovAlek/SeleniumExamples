@@ -104,6 +104,7 @@ public class MainPage{
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(0,200)");
         driver.findElement(progressBar).click();
+        js.executeScript("window.scrollBy(0,-200)");
 
     }
     public void goToTabs(){

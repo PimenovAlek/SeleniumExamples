@@ -2,12 +2,16 @@ package PageObject.Widgets;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 public class Accordian {
     WebDriver driver;
-    public Accordian(WebDriver driver){
+    WebDriverWait wait;
+    public Accordian(WebDriver driver, WebDriverWait wait){
         this.driver =driver;
+        this.wait = wait;
     }
     private By section1 = By.id("section1Heading");
     private By section2 = By.id("section2Heading");
@@ -16,18 +20,21 @@ public class Accordian {
     private By content2 = By.id("section2Content");
     private By content3 = By.id("section3Content");
 
-    public void selectFirst(){
+    public String selectFirst(){
         driver.findElement(section1).click();
-        assert driver.findElement(content1).getText().contains("Lorem Ipsum");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(content1));
+        return driver.findElement(content1).getText();
 
     }
-    public void selectSecond(){
+    public String selectSecond(){
         driver.findElement(section2).click();
-        assert driver.findElement(content2).getText().contains("Richard McClintock");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(content2));
+        return driver.findElement(content2).getText();
     }
-    public void selectThird(){
+    public String selectThird(){
         driver.findElement(section3).click();
-        assert driver.findElement(content3).getText().contains("'lorem ipsum'");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(content3));
+        return driver.findElement(content3).getText();
 
     }
 }
